@@ -35,6 +35,7 @@ module.exports = appInfo => {
   // 注入中间件
   config.middleware = [
     'params',
+    'errorHandler'
   ];
 
   // use for cookie sign key, should change to your own and keep security
@@ -57,6 +58,11 @@ module.exports = appInfo => {
     // origin: '*',//允许所有跨域访问，注释掉则允许上面 白名单 访问
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
   };
+  config.session={
+    key:'SESSION_ID',
+    maxAge:864000,
+    renew: true //延长会话有效期
+  }
   return {
     ...config,
     ...userConfig

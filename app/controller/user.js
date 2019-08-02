@@ -25,18 +25,19 @@ class UserController extends Controller {
     const { ctx } = this;
     const rs = await ctx.service.user.editUser(ctx.params);
     if(rs.affectedRows === 1){
-      ctx.body='编辑成功'
+      ctx.helper.success({ ctx, res:'编辑成功' })
     }else{
       ctx.body='编辑失败'
+      ctx.helper.fail({ ctx,  res:'编辑失败' })
     }
   }
   async deleteUser() {
     const { ctx } = this;
     const rs = await ctx.service.user.deleteUser(ctx.params);
     if(rs.affectedRows === 1){
-      ctx.body='删除成功'
+      ctx.helper.success({ ctx, res:'删除成功' })
     }else{
-      ctx.body='删除失败'
+      ctx.helper.fail({ ctx,  res:'删除失败' })
     }
   }
 }
