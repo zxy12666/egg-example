@@ -1,5 +1,4 @@
 /* eslint valid-jsdoc: "off" */
-
 'use strict';
 
 /**
@@ -35,7 +34,8 @@ module.exports = appInfo => {
   // 注入中间件
   config.middleware = [
     'params',
-    'errorHandler'
+    'errorHandler',
+    'auth'
   ];
 
   // use for cookie sign key, should change to your own and keep security
@@ -63,6 +63,32 @@ module.exports = appInfo => {
     maxAge:864000,
     renew: true //延长会话有效期
   }
+  config.cluster = {
+    listen: {
+      port: 7001,
+      hostname: '127.0.0.1',
+      // path: '/var/run/egg.sock',
+    }
+  }
+  config.validatePlus = {
+
+    resolveError(ctx, errors) {
+
+      if (errors.length) {
+
+        ctx.type = 'json';
+
+        ctx.status = 400;
+
+        ctx.body = {
+          code: 400,
+          error: errors,
+          message: '参数错误',
+        };
+      }
+    }
+  };
+
   return {
     ...config,
     ...userConfig

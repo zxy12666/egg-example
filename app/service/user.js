@@ -11,15 +11,15 @@ class UserService extends Service {
   }
   async selectUser(p) {
     const result = await this.app.mysql.select('users', {
-      columns: ['id', 'name'], //查询字段，全部查询则不写，相当于查询*
-      where: {
-        // name: 'wjw'
-      }, //查询条件
+      // columns: ['id', 'name'], //查询字段，全部查询则不写，相当于查询*
+      // where: {
+      //   // name: 'wjw'
+      // }, //查询条件
       orders: [
         ['id', 'desc'] //降序desc，升序asc
       ],
       limit: p.pageSize, //查询条数
-      offset: p.pageNumber //数据偏移量（分页查询使用）
+      offset: (p.pageNumber-1)*p.pageSize //数据偏移量（分页查询使用）
     })
     return result
   }

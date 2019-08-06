@@ -13,3 +13,7 @@ exports.session = {
   maxAge: 24 * 3600 * 1000, // 1 day httpOnly: true,
   encrypt: true
 };
+exports.validatePlus = {
+  enable: true,
+  package: 'egg-validate-plus',
+};

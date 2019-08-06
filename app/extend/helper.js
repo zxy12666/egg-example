@@ -17,22 +17,31 @@ module.exports = {
     503: '服务不可用，服务器暂时过载或维护。',
     504: '网关超时。',
   },
-  success: ({ ctx, code=200, res=null }) => {
-    ctx.status = 200
+  leo: {
+    LEO_URL: 'http://113.106.6.70:10080/leo/',
+    NC_URL: 'http://113.106.6.70:8181/WebApi/jh/Getyou/',
+    YKJ_URL: 'http://www.jh-phc.com:8181/WebApi/jh/ncpwd?',
+    SMS_URL: 'http://139.196.192.241:10091/',
+    EHR_URL: 'http://101.132.102.237:8099/uapws/rest/JhAppTransferLibraryManageServer/queryperson/json',
+    NCKF_URL: 'http://101.132.102.237:8099',
+    NCZS_URL: 'http://erp.jianhuabm.com:80',
+  },
+  success: ({ ctx, code = 200, res = null }) => {
+    ctx.status = 200;
     ctx.body = {
       code: code,
       message: ctx.helper.errorCode[code],
       data: res
-    }
+    };
   },
-  fail: ({ ctx, code=500, res=null }) => {
-    ctx.status = 200
+  fail: ({ ctx, code = 500, res = null }) => {
+    ctx.status = 200;
     ctx.body = {
       code: code,
       message: ctx.helper.errorCode[code],
       data: {
         error: res
       }
-    }
+    };
   }
-}
+};
