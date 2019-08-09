@@ -5,7 +5,8 @@ const Controller = require('egg').Controller;
 class UserController extends Controller {
   async info() {
     const { ctx } = this;
-    ctx.body = await ctx.service.user.addName(ctx.params.id);
+    const userInfo = await this.ctx.service.cache.get('userInfo');
+    ctx.helper.success({ ctx, res:userInfo })
   }
   async selectUser() {
     const { ctx } = this;

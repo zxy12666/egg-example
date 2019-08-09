@@ -12,8 +12,13 @@ class LoginController extends Controller {
     }
 
     const loginInfo = await ctx.service.login.loginIn(ctx.params);
-    // 省略部分代码
-    ctx.helper.success({ ctx, code:200, res:`登录成功${loginInfo.userno}` })
+    if(loginInfo.success){
+      ctx.session.userinfo=loginInfo.data
+      await this.ctx.service.cache.set('userInfo',loginInfo.data,60*60);
+      ctx.helper.success({ ctx, code:200, res:loginInfo.data })
+    }else{
+      ctx.helper.fail({ ctx, res:loginInfo.errorMsg})
+    }
   }
 }
 

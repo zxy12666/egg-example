@@ -1,12 +1,13 @@
 module.exports = options => {
   return async function auth(ctx, next) {
-    await next();
-    if(ctx.path=='/'||ctx.path=='/login'||ctx.path=='session/insert'){
-      return;
+    if(ctx.path==='/'||ctx.path==='/user/login'||ctx.path==='session/insert'){
+      await next();
+    }else{
+      if(!ctx.session.userinfo){
+        ctx.helper.fail({ ctx, code:401, res:'用户未登录'})
+      }else{
+        await next();
+      }
     }
-    if(!ctx.session.userinfo.name){
-      ctx.helper.success({ ctx, code:200, res:'用户未登录'})
-    }
-
   };
 };

@@ -33,9 +33,9 @@ module.exports = appInfo => {
 
   // 注入中间件
   config.middleware = [
+    'auth',
     'params',
     'errorHandler',
-    'auth'
   ];
 
   // use for cookie sign key, should change to your own and keep security
@@ -87,8 +87,23 @@ module.exports = appInfo => {
         };
       }
     }
+  }
+  config.redis = {
+    client: {
+      port: 6379,          // Redis port
+      host: '127.0.0.1',   // Redis host
+      password: 'zxy12666',
+      db: 0,
+    }
+  }
+  config.mongoose = {
+    url: process.env.EGG_MONGODB_URL || 'mongodb://127.0.0.1/asGiant',
+    options: {
+      server: {
+        poolSize: 40,
+      },
+    },
   };
-
   return {
     ...config,
     ...userConfig

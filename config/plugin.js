@@ -17,3 +17,11 @@ exports.validatePlus = {
   enable: true,
   package: 'egg-validate-plus',
 };
+exports.redis = {
+  enable: true,
+  package: 'egg-redis',
+};
+exports.mongoose = {
+  enable: true,
+  package: 'egg-mongoose',
+};

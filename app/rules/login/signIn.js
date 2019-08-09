@@ -1,11 +1,11 @@
 'use strict';
 
 const rule = {
-  userno: [
+  loginName: [
     { required: true, message: '用户名不能为空' },
     { type: 'string', message: '用户名字段需要是字符串' },
   ],
-  pw: [
+  password: [
     { required: true, message: '密码不能为空' },
     { type: 'string', message: '密码字段需要是字符串' },
     // {
