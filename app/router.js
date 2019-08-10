@@ -2,6 +2,7 @@
 
 const userRouter = require('./routers/user');
 const sessionRouter = require('./routers/session');
+const articleRouter = require('./routers/article');
 module.exports = app => {
   const { router, controller } = app;
   router.get('/', controller.home.index);
@@ -10,4 +11,5 @@ module.exports = app => {
   router.post('/post', controller.home.postObj);
   userRouter(app);
   sessionRouter(app);
+  articleRouter(app);
 };
