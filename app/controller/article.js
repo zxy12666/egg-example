@@ -8,15 +8,16 @@ class ArticleController extends Controller {
     const articleInfo = await ctx.model.Article.find();
     ctx.helper.success({ ctx, res:articleInfo })
   }
-  // async selectUser() {
-  //   const { ctx } = this;
-  //   const user = await ctx.service.user.selectUser(ctx.params);
-  //   ctx.body=user
-  // }
+  async selectArticle() {
+    const { ctx } = this;
+    const articleList = await ctx.service.article.selectArticle(ctx.params);
+    ctx.helper.success({ ctx, res:articleList })
+  }
   async insertArticle() {
     const { ctx } = this;
     const rs = await ctx.service.article.add(ctx.params)
     ctx.body=rs;
+    ctx.helper.success({ ctx, res:rs })
   }
   // async editUser() {
   //   const { ctx } = this;

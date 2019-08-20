@@ -18,6 +18,10 @@ module.exports = app => {
       type: String,
       require: true,
     },
+    createTime:{
+      type:Date,
+      default:Date.now()
+    }
   });
   return mongoose.model('Article', ArticleSchema, 'article');
 };
